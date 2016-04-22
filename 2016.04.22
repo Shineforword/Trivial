@@ -1,0 +1,13 @@
+1>
+问题详情：
+all bitcode will be dropped because ‘xxxx’ was built without bitcode. 
+You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), 
+obtain an updated library from the vendor, or disable bitcode for this target. 
+Note: This will be an error in the future.
+问题分析:
+从上述的错误中应该可以看出，这是因为一个第三方的库不兼容，
+工程中开启了 ENABLE_BITCODE （应该是升级之后自动转换的），
+而这个第三方的库在编译的时候没有 enable bitcode，所以导致上诉问题。
+问题解决:
+Target - > Buidinng Setting - > 搜索 bitcode - > Enable BitCode 设置为NO
+
