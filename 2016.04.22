@@ -10,4 +10,3 @@ Note: This will be an error in the future.
 而这个第三方的库在编译的时候没有 enable bitcode，所以导致上诉问题。
 问题解决:
 Target - > Buidinng Setting - > 搜索 bitcode - > Enable BitCode 设置为NO
-
