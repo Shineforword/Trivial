@@ -17,3 +17,5 @@
 // _tableView 如果一个类里有多个表格，要明确指明要去掉哪一个表格头的粘性
 参照:
 http://www.henishuo.com/ios-tableview-section-style
+
+2>没有使用section的tableView,可以将tableViewHeaderView直接设置为所需要的view即设置整个tableview的headerView
