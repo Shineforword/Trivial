@@ -28,3 +28,14 @@
 5>将一个控制器从它的父控制器中移除
 // 控制器a从它的父控制器中移除
 [currentController removeFromParentViewController];
+
+6>注意
+  当前控制器已经被添加到某个父控制器上时就会调用这个方法
+  当前控制器从父控制器中移除也会调用这个方法
+     - (void)didMoveToParentViewController:(UIViewController *)parent
+
+  如果是手动创建的`容器`用于保存子控制器，但是添加进去后没有`过渡动画`，就需要手动调用
+     - (void)didMoveToParentViewController:(UIViewController *)parent，
+  但是不管有没有`过渡动画`都会调用
+     -(void)willMoveToParentViewController:(UIViewController *)parent）
+  这两个方法一般不用。
