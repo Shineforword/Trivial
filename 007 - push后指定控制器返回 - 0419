@@ -1,0 +1,16 @@
+
+1>前提是自定义返回按钮
+- (void)leftNavClick {
+/** 本控制器使用weak修饰,防止循环引用*/
+    __weak ConfirmAROrderController *detailVC = self;
+    /** 快速遍历本控制器导航控制器内的控制器(所有push进入的视图控制器)*/
+    for (UIViewController *controller in detailVC.navigationController.viewControllers) {
+        /** 指定所要跳转的视图控制器*/
+        if ([controller isKindOfClass:[AROrderDetailController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+        if ([controller isKindOfClass:[ActivityViewDetailController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
+}
