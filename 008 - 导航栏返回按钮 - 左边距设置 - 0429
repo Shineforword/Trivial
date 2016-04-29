@@ -1,0 +1,17 @@
+1>自定义导航栏返回按钮
+    UIImage *image = [UIImage imageNamed:@"nav_back"];
+    /** 大小可变*/
+    CGRect backframe = CGRectMake(0, 0, 12, 22);
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = backframe;
+    [backButton setBackgroundImage:image forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    backButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [backButton addTarget:self action:@selector(leftNavClick) forControlEvents:UIControlEventTouchUpInside];
+    //定制UIBarButtonItem
+    UIBarButtonItem *someBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];    
+    //调整位置(设置占位)
+    UIBarButtonItem *nagativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    nagativeSpacer.width = -10;
+    self.navigationItem.leftBarButtonItems = @[nagativeSpacer, someBarButtonItem];
+
