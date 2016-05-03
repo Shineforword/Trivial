@@ -1,0 +1,57 @@
+
+1> TimeManger.h 文件
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface TimeManger : NSObject
+/** 时间对象*/
+@property (nonatomic,strong)NSTimer * timer;
+/** 倒计时秒数*/
+@property (nonatomic)int timeCount;
+/** 倒计时展示按钮*/
+@property (nonatomic,strong)UIButton * kShowTimeButton;
+
+/** 初始化使用方法*/
+-(id)initWithLabel:(UIButton *)showTimeButton;
+/** 开始倒计时*/
+- (void)timeStart;
+@end
+
+2>TimeManger.m 文件
+
+#import "TimeManger.h"
+@implementation TimeManger
+
+- (id)initWithLabel:(UIButton *)showTimeButton{
+    if (self = [super init]) {
+        self.kShowTimeButton = showTimeButton;
+        _timeCount = 60;
+        return self;
+    }
+    return nil;
+}
+- (void)timeStart
+{
+    _timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    self.kShowTimeButton.enabled = NO;
+}
+
+- (void)updateTime:(NSTimer *)tm{
+    _timeCount--;
+    if (_timeCount>= 1) {
+            [self.kShowTimeButton setTitle:[NSString stringWithFormat:@"%ds后重发",_timeCount] forState:UIControlStateNormal];
+    }
+    
+    if (_timeCount < 1) {
+        [_timer setFireDate:[NSDate distantFuture]];
+            [self.kShowTimeButton setTitle:@"重发验证码" forState:UIControlStateNormal];
+            self.kShowTimeButton.enabled = YES;
+        _timeCount = 60;
+    }
+}
+@end
+3>使用方法
+1:调用初始化方法传入一个button
+2:使用TimeManger对象调用timeStart对象方法
+
