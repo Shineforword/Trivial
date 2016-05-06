@@ -1,0 +1,5 @@
+1>动态的设置cell高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    RankCell *cell = (RankCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.cellHight;
+}
