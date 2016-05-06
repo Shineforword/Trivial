@@ -1,0 +1,45 @@
+1>
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+              
+              /** 处理耗时操作的代码块...*/
+              /** 通知主线程刷新 */
+ });
+
+2>返回主线程
+dispatch_async(dispatch_get_main_queue(), ^{
+
+            /** 回调或者说是通知主线程刷新*/
+});
+
+3>系统提供的Dispatch Queue
+    1:Main Dispatch Queue（Serail Dispatch Queue）
+    主线程中执行的Dispatch Queue 因为主线程只有1个，所以Main Dispatch Queue自然就是Serail Dispatch Queue
+    追加到Main Dispatch Queue的处理在主线程的RunLoop中执行。
+    由于在主线程中执行，因此要将用户界面更新等一些必须在主线程中执行的处理追加到Main Dispatch Queue使用。
+    2:Gloabal Dispatch Queue（Concurrent Dispatch Queue）
+    没有必要通过dispatch_queue_create函数逐个生成Concurrent Dispatch Queue。只要获取Global Dispatch Queue使用即可。
+4>各种Dispatch Queue的获取方法如下：
+  /** 1: Main Dispatch Queue的获取方法*/
+  dispatch_queue_t mainDispatchQueue = dispatch_get_main_queue();
+
+  /** 2: Global Dispatch Queue(高优先级)的获取方法*/
+  dispatch_queue_t globalDispatchQueueHigh = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+
+  /** 3: Global Dispatch Queue(默认先级)的获取方法*/
+  dispatch_queue_t globalDispatchQueueDefault = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_Default, 0);
+
+  /** 4: Global Dispatch Queue(低优先级)的获取方法*/
+  dispatch_queue_t globalDispatchQueueLow = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+
+  /** 5: Global Dispatch Queue(后台优先级)的获取方法*/
+  dispatch_queue_t globalDispatchQueueBackgroud = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUD, 0);
+
+5> dispatch_asnyc(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+                 /** 可并行执行的处理*/
+                
+                /**  在 Main Dispatch Queue中执行Block*/
+                dispatch_async(dispatch_get_main_queue(), ^{
+                 
+             });
+    });
