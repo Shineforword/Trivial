@@ -1,0 +1,29 @@
+
+1>.h 文件
+#import <UIKit/UIKit.h>
+
+@interface UIButton (IndexPath)
+
+@property (nonatomic,strong)NSIndexPath * buttonIndexPath;
+
+@end
+
+2>.m 文件
+#import "UIButton+IndexPath.h"
+#import <objc/runtime.h>
+
+static char const * const ObjectTagKey = "buttonIndexPath";
+
+
+@implementation  UIButton (IndexPath)
+@dynamic buttonIndexPath;
+
+- (id)buttonIndexPath{
+    return objc_getAssociatedObject(self, ObjectTagKey);
+}
+
+- (void)setButtonIndexPath:(NSIndexPath *)buttonIndexPath{
+      objc_setAssociatedObject(self, ObjectTagKey, buttonIndexPath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end
