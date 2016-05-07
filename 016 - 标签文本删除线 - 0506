@@ -1,0 +1,13 @@
+1>//添加删除线
+
+      NSUInteger length1 = [showOriginalPrice.text length];
+      
+      NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:showOriginalPrice.text];
+      
+      [attri addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, length1)];
+      
+      [attri addAttribute:NSStrikethroughColorAttributeName value:QYQHEXCOLOR(0x666666) range:NSMakeRange(0, length1)];
+      
+      [showOriginalPrice setAttributedText:attri];
+2>NSMutableAttributedString
+//添加不同的属性以达到不同的显示效果
