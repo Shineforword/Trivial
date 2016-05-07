@@ -1,0 +1,7 @@
+   1>合成电话可变字符串
+    NSMutableString *str =[[NSMutableString alloc] initWithFormat:@"tel:%@",_hotline];
+   2>生成WebView 
+    UIWebView *callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+   3>若是controller添加
+    [self.view addSubview:callWebview];
