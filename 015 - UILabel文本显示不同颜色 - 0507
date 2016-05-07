@@ -1,0 +1,21 @@
+
+1>/** 改变文本显示颜色*/
+/** 返回值是UILabel的attributedText属性字符串,参数是要显示的字符处*/
+- (NSMutableAttributedString *)changeTextShowColorWithStr:(NSString *)str{
+    NSMutableAttributedString *changedStr =[[NSMutableAttributedString alloc] initWithString:str];
+    NSUInteger length = [changedStr length];
+    //前后分段显示不同颜色:添加不同的属性
+    [changedStr addAttribute:NSForegroundColorAttributeName
+                value:BASE_COLOR
+                range:NSMakeRange(0, 4)];
+    [changedStr addAttribute:NSForegroundColorAttributeName
+                value:QYQHEXCOLOR(0x666666)
+                range:NSMakeRange(4, length - 4)];
+    [changedStr addAttribute:NSFontAttributeName
+                value:[UIFont systemFontOfSize:[UIView setWidth:15]]
+                range:NSMakeRange(0, 4)];
+    [changedStr addAttribute:NSFontAttributeName
+                value:[UIFont systemFontOfSize:[UIView setWidth:15]]
+                range:NSMakeRange(4, length - 4)];
+    return changedStr;
+}
