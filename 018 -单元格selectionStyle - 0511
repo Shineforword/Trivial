@@ -1,0 +1,14 @@
+1>selectionStyle
+好吧:UITableViewCellSelectionStyleNone 也可以设置:cell.userInteractionEnabled = NO
+typedef NS_ENUM(NSInteger, UITableViewCellSelectionStyle) {
+    UITableViewCellSelectionStyleNone,//无选中效果
+    UITableViewCellSelectionStyleBlue,
+    UITableViewCellSelectionStyleGray,
+    UITableViewCellSelectionStyleDefault NS_ENUM_AVAILABLE_IOS(7_0)//默认
+    };
+还有一个枚举:设置表的分隔线的样式
+typedef NS_ENUM(NSInteger, UITableViewCellSeparatorStyle) {
+    UITableViewCellSeparatorStyleNone,
+    UITableViewCellSeparatorStyleSingleLine,
+    UITableViewCellSeparatorStyleSingleLineEtched   // This separator style is only supported for grouped style table views currently
+} __TVOS_PROHIBITED;
