@@ -1,0 +1,6 @@
+UIImage *img=[UIImage imageNamed:@"image.png"];
+1>瓦片平铺
+img=[img stretchableImageWithLeftCapWidth:15 topCapHeight:12];
+第一个是左边不拉伸区域的宽度，第二个参数是上面不拉伸的高度。
+2>这个是按照距离边距的线拉伸的，取值不当会有重复的地方.
+img = [imgresizableImageWithCapInsets:UIEdgeInsetsMake(30,23,9,23)];
