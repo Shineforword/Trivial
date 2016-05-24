@@ -1,0 +1,13 @@
+
+1>定义UIEdgeInsets是结构体(上左下右逆时针)
+typedef struct UIEdgeInsets {
+  CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
+} UIEdgeInsets;
+
+2>button图片标题同时设置时,
+  1.均居中的设置方法
+  [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -button.titleLabel.intrinsicContentSize.width)];
+  [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -button.currentImage.size.width, 0, 0)];
+  2.上下调整
+  [button setImageEdgeInsets:UIEdgeInsetsMake(-button.titleLabel.intrinsicContentSize.height, 0, 0, -button.titleLabel.intrinsicContentSize.width)];
+  [button setTitleEdgeInsets:UIEdgeInsetsMake(button.currentImage.size.height, -button.currentImage.size.width, 0, 0)];
