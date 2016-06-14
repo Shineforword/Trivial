@@ -1,0 +1,10 @@
+1>expr
+用于调试过程中动态修改变量的值.
+2>call 
+call命令调试时动态调用方法.
+示例 : 
+call [self.view setBackgroundColor:[UIColor redColor]] 
+断点调试时,可以动态改变控制器的背景颜色.
+3>bt 
+打印调用堆栈
++all 可以打印所有的Thread的堆栈
