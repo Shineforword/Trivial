@@ -24,12 +24,8 @@ return self;
    self.collectionView.contentOffset = self.offsetpoint;
 }
 
- 
-
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)oldBounds{
-
- 
-
 return NO;
-
 }
+
+http://www.2cto.com/kf/201508/434550.html
