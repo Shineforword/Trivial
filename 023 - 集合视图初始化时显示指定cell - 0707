@@ -1,0 +1,35 @@
+---->在使用的地方改变自定义布局流的offsetpoint属性 显示指定cell
+
+#pragma mark -- 使用场景：选中非第一张图片用CollectionView进行浏览时，CollectionView滑动到相应的位置
+#pragma mark -- 重点在于UICollectionViewFlowLayout的prepareLayout方法的使用
+
+#pragma mark -- 自定义UICollectionViewFlowLayout的h文件
+@interface SSCollectionViewFlowLayout : UICollectionViewFlowLayout
+/*** collectionView的偏移量*/
+@property (nonatomic, assign) CGPoint offsetpoint;
+@end
+#pragma mark -- 自定义UICollectionViewFlowLayout的m文件
+@implementation SSCollectionViewFlowLayout
+
+- (instancetype)init{
+self = [super init];
+if (self) {
+self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+}
+return self;
+}
+/** 重写该方法*/
+- (void)prepareLayout{
+   [super prepareLayout];
+   self.collectionView.contentOffset = self.offsetpoint;
+}
+
+ 
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)oldBounds{
+
+ 
+
+return NO;
+
+}
