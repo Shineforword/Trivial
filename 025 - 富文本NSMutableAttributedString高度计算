@@ -1,0 +1,13 @@
+示例:
+    NSString * infoString = [NSString stringWithFormat:@"        %@",infoDic[@"content"]];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:[UIView setWidth:5]];//调整行间距
+    NSMutableAttributedString * attributedText = [[NSMutableAttributedString alloc] initWithString:infoString];
+    [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:attributedText.rangeOfAll];
+    [attributedText addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:W(12)] range:attributedText.rangeOfAll];
+    CGRect textRect = [attributedText boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - W(20), MAXFLOAT)
+                                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                               context:nil];
+    _information.sd_layout
+    .heightIs(textRect.size.height+15);
+    _information.attributedText = attributedText;
