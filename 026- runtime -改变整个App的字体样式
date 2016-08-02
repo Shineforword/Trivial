@@ -1,0 +1,46 @@
+
+#import <UIKit/UIKit.h>
+@interface UILabel (ChangeDefaultFont)
+@end
+
+#import "UILabel+ChangeDefaultFont.h"
+
+@implementation UILabel(ChangeDefaultFont)
+
++(void)load{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class class = [self class];
+        SEL originalSelector = @selector(setFont:);
+        SEL swizzledSelector = @selector(ZXSetFont:);
+        
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+
+        BOOL didAddMethod =
+        class_addMethod(class,
+                        originalSelector,
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod(class,
+                                swizzledSelector,
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod));
+            
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+       
+    });
+    
+}
+
+- (void)ZXSetFont:(UIFont *)font {
+    
+    [self ZXSetFont:[UIFont fontWithName:@"STHeitiSC-Light" size:font.pointSize]];
+}
+
+
+@end
