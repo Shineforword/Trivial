@@ -1,0 +1,7 @@
+ 1. 号码显示插入****号的字符串转换
+    原号码字符串:
+    NSString * phone = @"13781213137”;
+    需要转化的位置字符串:
+    NSString * needTran =  [phone substringWithRange:NSMakeRange(3,4)];
+    转化后的字符串
+    NSString * transforedStr =[phone stringByReplacingOccurrencesOfString:needTran withString:@"****”];
