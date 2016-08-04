@@ -1,0 +1,45 @@
+1.创建版本库
+1>pwd:显示当前文件路径
+2>git init :把当前目录变成Git可以管理的版本库
+3>ls -ah :显示隐藏文件夹
+
+2.版本库中添加文件
+1>git add :文件添加到仓库,可以多次使用添加多个文件
+2>git commit -m "" :文件提交到仓库
+
+3.查看当前文件库状态
+1>git status :查看当前文件库状态
+2>git diff   :查看文件修改过的内容
+
+4.版本回退
+1>git log :显示最近三次的提交日志,查看提交历史
+2>git log --pretty=oneline :显示主要信息
+3>git reset --hard HEAD^ :回退到上一版本(^多少个回退多少个版本)
+4>git reset --hard 3628164 :回到指定版本
+5>git reflog :显示每一次命令,查看历史命令
+
+5.Git 的工作区 和暂存区
+1>git add 是把文件添加进去,实际上就是把文件添加到暂存区
+2>git commit 提交更改是把当前修改提交到当前分支
+
+6.管理修改
+1>修改完成需要重新add 重新提交
+2>git checkout -- fileName: 可以丢弃工作区的修改文件内容
+
+7.删除文件
+1>确实需要删除文件:使用git rm 并git commit
+2>如果删错了:使用 git checkout -- fileName 误删的文件恢复到最新版本(你会丢失最后一次修改提交的内容)
+
+8.分支,分支管理
+1>git checkout -b  <name> : 新建并切换到该分支
+2>git branch : 查看分支,
+3>git checkout  <name>:切换分支
+4>git branch  <name>:新建分支
+5>git merge <name>:合并某分支到当前分支
+6>git branch -d  <name>: 删除分支
+
+
+
+
+
+
