@@ -38,6 +38,65 @@
 5>git merge <name>:合并某分支到当前分支
 6>git branch -d  <name>: 删除分支
 
+9.解决冲突
+1>当合并两个分支的时候,发生冲突.git status 找到发生冲突的位置.手动修改后重新提交.
+2>$ git log --graph --pretty=oneline --abbrev-commit :查看分支的合并情况
+
+10.分支管理策略
+1>合并分支时,如果可能,Git会用Fast forward模式,这种模式下,删除分支后,会丢掉分支信息
+  强制禁用Fast forward 模式
+  Git就会在merge时生成一个新的commit,这样就可以在分支历史上看出分支信息
+  $ git merge --no-ff -m "merge with no-ff" dev
+2>主分支 master 工作分支 dev 个人分支 person 建立临时修复bug的分支 issue - ..
+3>合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，
+而fast forward合并就看不出来曾经做过合并。
+
+11.临时保存工作现场
+1>git stash :把当前工作现场保存
+2>回到工作现场的两种方法:
+   1>git stash apply : 恢复(但是stash内容并不删除) 
+     git stash :删除stash内容
+   2>git stash pop :恢复的同时也把stash的内容删除了
+3>git stash list :查看stash内容
+4>git stash apply stash@{0} :恢复指定的工作现场
+
+12.feature分支
+1>开发中,没添加一个新的功能,最好新建一个feature分支,在上面开发并完成合并最后删除该分支
+2>$ git branch -D <name>: 强行删除一个分
+
+13.标签管理(唯一)
+1>发布一个版本的时候,通常要在版本库上打一个标签(tag),就是唯一确定打标签时刻的版本.
+Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），
+所以，创建和删除标签都是瞬间完成的。
+2>git tag <name>:在某个分支上打标签
+3>git tag : 查看所有标签
+4>git log --pretty=oneline --abbrev-commit:找到所有历史版本
+5>git tag v0.9 6224937 :给对应版本打上相应的标签;
+6>注意，标签不是按时间顺序列出，而是按字母排序的。可以用git show <tagname>查看标签信息：
+7>git tag -a v0.1 -m "version 0.1 released" 3628164 :还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+8>git tag -s v0.2 -m "signed version 0.2 released" fec145a:
+还可以通过-s用私钥签名一个标签：
+签名采用PGP签名，因此，必须首先安装gpg（GnuPG），如果没有找到gpg，或者没有gpg密钥对，就会报错：
+
+
+14.删除标签
+1>git tag -d v0.1 :删除一个标签
+2>git push origin v1.0 :推送某个标签到远程
+3>git push origin --tags :一次性推送全部尚未推送到远程的本地标签;
+4>如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
+   $ git tag -d v0.9 :从本地删除
+   $ git push origin :refs/tags/v0.9 :在远程删除
+   
+
+
+  
+  
+  
+  
+  
+  
+  
+
 
 
 
