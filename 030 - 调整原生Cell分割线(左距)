@@ -1,0 +1,19 @@
+主要步骤
+1.tableView初始化后设置
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset: UIEdgeInsetsZero];
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins: UIEdgeInsetsZero];
+    }
+2.表的代理方法中设置
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        //cell原生分割线距左15个单位
+        [cell setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 0)];
+    }
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+    }
+}
