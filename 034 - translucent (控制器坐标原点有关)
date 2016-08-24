@@ -1,0 +1,19 @@
+1.translucent用法
+  iOS7之后由于navigationBar.translucent默认是YES，
+  原点在（0，0）点
+  1>当设置NO的时候，原点坐标在（0，64）点
+  self.navigationController.navigationBar.translucent = NO;
+2.automaticallyAdjustsScrollViewInsets用法
+在用的时候都会有两种情况咯
+1>单独设置self.automaticallyAdjustsScrollViewInsets
+// 原点从（0，64）开始
+self.automaticallyAdjustsScrollViewInsets = NO;
+2>单独self.automaticallyAdjustsScrollViewInsets = NO设置，原点就是（0，0）开始
+// 原点从（0，0）开始
+self.automaticallyAdjustsScrollViewInsets = NO;
+3>和self.edgesForExtendedLayout联合设置，原点就是（0，64）开始
+// 原点从（0，64）开始
+self.automaticallyAdjustsScrollViewInsets = NO;
+self.edgesForExtendedLayout = UIRectEdgeNone;
+系统就会自动根据UINavigationBar和statusBar将view下移64，frame从（0，64）开始。
+这样，我们在布局内部控件的时候依然可以从（0，0）开始，而不必担心上部被UINavigationBar遮挡了
