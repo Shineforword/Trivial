@@ -1,0 +1,12 @@
+1.毛玻璃特效类型
+UIBlurEffectStyleExtraLight,偏白色
+UIBlurEffectStyleLight,透明色
+UIBlurEffectStyleDark,偏黑色
+2.
+UIBlurEffect*blur = [UIBlurEffecteffectWithStyle:UIBlurEffectStyleDark];
+//创建一个毛玻璃视图对象
+UIVisualEffectView*effectview = [[UIVisualEffectViewalloc]initWithEffect:blur];
+//设置透明度
+effectview.alpha = 1.0;
+effectview.frame=CGRectMake(0,0, imageView.frame.size.width/2.0,imageView.frame.size.height);
+[imageView addSubview:effectview];
