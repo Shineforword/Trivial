@@ -1,0 +1,10 @@
+需求:
+从别的地方得到一张图片，
+但是图片色调和app主色调不一致，
+又不想重新用ps换色
+
+UIImageView *tempImageView = [[UIImageView alloc] init];
+leftWaringImage.frame = CGRectMake(10, 2, 16, 16); 
+tempImageView.image = [[UIImage imageNamed:@"topWaringLeftImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]; 
+tempImageView.tintColor = kMainColor; 
+//kMainColor换颜色
