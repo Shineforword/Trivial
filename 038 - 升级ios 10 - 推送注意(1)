@@ -1,0 +1,37 @@
+升级ios 10 推送 与之前项目比较:
+1、在项目 target 中，打开Capabilitie —> Push Notifications，
+并会自动在项目中生成 .entitlement 文件。（很多升级后，获取不到 deviceToken，大概率是由于没开这个选项）
+2、确保添加了 UserNotifications.framework，并 import 到 AppDelegate，记得实现 UNUserNotificationCenterDelegate 。
+3、在 didFinishLaunchingWithOptions 方法中，首先实现 UNUserNotificationCenter delegate，并使用 UIUserNotificationSettings 请求权限。
+//注意，关于 iOS10 系统版本的判断，可以用下面这个宏来判断。不能再用截取字符的方法。
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  
+([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+-(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")){
+    
+      UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+      center.delegate = self;
+      [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
+           if( !error ){
+               [[UIApplication sharedApplication] registerForRemoteNotifications];
+           }
+     }];  
+  }
+    return YES;
+}
+4.最后实现以下两个回调
+//====================For iOS 10====================
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center 
+willPresentNotification:(UNNotification *)notification 
+withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+   NSLog(@"Userinfo %@",notification.request.content.userInfo);
+   //功能：可设置是否在应用内弹出通知
+   completionHandler(UNNotificationPresentationOptionAlert);
+}
+//点击推送消息后回调
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center 
+didReceiveNotificationResponse:(UNNotificationResponse *)response 
+withCompletionHandler:(void(^)())completionHandler{
+       NSLog(@"Userinfo %@",response.notification.request.content.userInfo);
+}
+
