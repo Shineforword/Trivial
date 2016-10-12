@@ -94,13 +94,15 @@ git reset --hard HASH #返回到某个节点，不保留修改。
 git reset --soft HASH #返回到某个节点。保留修改
 16. 出现error: The following untracked working tree files would be overwritten by checkout
 $ git clean -d -fx ""
-6.一次commit 5个文件到gerrit上面，然后发现有一个不需要提交，只要提交4个就好，
+16.一次commit 5个文件到gerrit上面，然后发现有一个不需要提交，只要提交4个就好，
 想重新提交一次在同一个commit ID下面，我该怎么做？前提代码还没有被merge进库
 例如要取消文件2.txt, 那么先恢复2.txt到commit id 9a42e8e3f41dcf5029a11ce651f36cbdf37fc84d，你提交之前的那一个commit id
 git reset 9a42e8e3f41dcf5029a11ce651f36cbdf37fc84d -- 2.txt
 git checkout -- 2.txt
 git add .
 git commit --amend 
+
+17.git rm -r --cached .DS_Store
    
 
 
