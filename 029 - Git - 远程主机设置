@@ -8,5 +8,5 @@
   添加远程主机
 5.git remote rm   + 主机名
   删除远程主机
-6.git remoe rename 旧主机名 新主机名
+6.git remote rename 旧主机名 新主机名
   重命名远程主机
