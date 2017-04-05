@@ -1,0 +1,8 @@
+总共两步:
+
+1. Status bar style  设置为 UIStatusBarStyleLightContent
+
+2. View controller-based status bar appearance 设置为 NO
+
+
+plist文件中设置
