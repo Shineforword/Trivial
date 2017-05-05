@@ -1,0 +1,25 @@
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    if (!self.clipsToBounds && !self.hidden && self.alpha > 0 ) {
+        UIView * result = [super hitTest:point withEvent:event];
+        if (result) {
+            return result;
+        }else{
+            for (UIView * subView in self.subviews.reverseObjectEnumerator) {
+                /** 不同坐标系中点的转化(B视图中a点转化为A视图中的点)
+                 * [A convertPoint: a fromView: B];
+                 */
+                CGPoint subPoint = [subView convertPoint:point  fromView:self];
+                /*
+                 *  触摸的点是否在当前视图内,是返回当前视图,否返回nil
+                 */
+                result = [subView hitTest:subPoint withEvent:event];
+                if (result) {
+                    return result;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+拦截父视图的点击事件，找出子视图并返回响应。
