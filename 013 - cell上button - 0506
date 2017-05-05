@@ -27,3 +27,5 @@ static char const * const ObjectTagKey = "buttonIndexPath";
 }
 
 @end
+
+给一个类，用分类的方式添加属性，声明property 采用runtime 中的关联策略。动态添加。
