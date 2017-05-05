@@ -1,0 +1,13 @@
+ 1. /* 部分机型系统无提示(5S iOsS 9.3.5)
+     * [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"tel:168"]];
+     */
+    
+ 2.  均有提示 
+  NSMutableString *str =[[NSMutableString alloc] initWithFormat:@"telprompt://%@", @"400"];
+  [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
+   
+  3.均有提示
+//    NSMutableString *str =[[NSMutableString alloc] initWithFormat:@"tel:%@", @"400"];
+//    UIWebView *callWebview = [[UIWebView alloc] init];
+//    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+//    [self.view addSubview:callWebview];
